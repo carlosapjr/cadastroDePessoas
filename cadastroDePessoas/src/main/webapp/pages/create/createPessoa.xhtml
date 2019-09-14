@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:form id="form">
+        <h:head>
+            <title>Adicionar/Editar Pessoa</title>
+        </h:head>
+        <h:body>
+            <p:messages id="mensagens" />
+            <h:outputText value ="Adicionar/Editar Pessoa" />
+            <h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+                <h:outputText value ="*Nome" />
+                <p:inputText value="#{createPessoaMb.pessoa.nome}"
+                             required="true"
+                             requiredMessage="Campo Nome é obrigatório!"/>
+
+                <h:outputText value ="*CPF" />
+                <p:inputMask mask="999.999.999-99" id="cpf" size="15"
+                             required="true"
+                             requiredMessage="Campo CPF é obrigatório!"
+                             value="#{createPessoaMb.pessoa.cpf}" />
+
+                <h:outputText value ="*Data de Nascimento" />
+                <p:calendar id="popup" value="#{createPessoaMb.data}"
+                            maxdate="#{createPessoaMb.today}"
+                            pattern="dd/MM/yyyy"
+                            mindate="01/01/1919"
+                            required="true" 
+                            requiredMessage="Campo Data de Nascimento è obrigatório!"/>
+
+                <h:outputText value ="Naturalidade" />
+                <p:selectOneMenu value="#{createPessoaMb.pessoa.naturalidade}">
+                    <f:selectItems value="#{createPessoaMb.naturalidade}" var="naturalidade"
+                                   itemLabel="#{naturalidade.label}" itemValue="#{naturalidade}" />
+                </p:selectOneMenu>
+
+                <h:outputText value ="Nacionalidade" />
+                <p:inputText value="#{createPessoaMb.pessoa.nacionalidade}"/>
+
+                <h:outputText value ="Sexo" />
+                <p:selectOneMenu value="#{createPessoaMb.pessoa.sexo}">
+                    <f:selectItems value="#{createPessoaMb.sexo}" var="sexo"
+                                   itemLabel="#{sexo.label}" itemValue="#{sexo}" />
+                </p:selectOneMenu>
+
+                <h:outputText value ="E-mail" />
+                <p:inputText value="#{createPessoaMb.pessoa.email}"
+                             validatorMessage="O e-mail informado é inválido!">
+
+                    <f:validateRegex
+                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </p:inputText>
+
+            </h:panelGrid>
+
+            <p:commandButton value="Cancelar"
+                             ajax="false"
+                             immediate="true"
+                             actionListener="#{createPessoaMb.redirecionaParaListagem()}" 
+                             style="margin-right:20px;" 
+                             styleClass="ui-priority-primary" />
+            <p:commandButton value="Salvar"
+                             ajax="false"
+                             actionListener="#{createPessoaMb.salvar()}" 
+                             style="margin-right:20px;" 
+                             styleClass="ui-priority-primary" />
+        </h:body>
+    </h:form>
+</html>

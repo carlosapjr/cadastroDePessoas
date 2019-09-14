@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form>
+        <h:head>
+            <title>Listagem de Pessoas</title>
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        </h:head>
+        <h:body>
+            <p:messages id="mensagens" />
+            
+            <h:outputText value ="#{listPessoaMb.message}" />
+
+            <p:dataTable var="pessoa"
+                         
+                         value="#{listPessoaMb.pessoas}">
+                
+                <p:column headerText="Nome">
+                    <h:outputText value="#{pessoa.nome}" />
+                </p:column>
+
+                <p:column headerText="CPF">
+                    <h:outputText value="#{pessoa.cpf}" />
+                </p:column>
+
+                <p:column headerText="Data de Nascimento">
+                    <h:outputText value="#{pessoa.dataDeNascimentoFromatada}" />
+                </p:column>
+
+                <p:column headerText="Naturalidade">
+                    <h:outputText value="#{pessoa.naturalidade.label}" />
+                </p:column>
+
+                <p:column headerText="E-mail">
+                    <h:outputText value="#{pessoa.email}" />
+                </p:column>
+                
+                <p:column style="width:32px">
+                    <p:commandButton ajax="false"
+                             icon="fa fa-trash-alt"
+                             actionListener="#{listPessoaMb.delete(pessoa)}" 
+                             style="margin-right:20px;" 
+                             styleClass="ui-priority-primary" />
+                    <p:commandButton ajax="false"
+                             icon="fa fa-fw fa-edit"
+                             actionListener="#{listPessoaMb.edit(pessoa)}" 
+                             style="margin-right:20px;" 
+                             styleClass="ui-priority-primary" />
+                </p:column>
+            </p:dataTable>
+
+            <p:commandButton value="Cadastrar"
+                             ajax="false"
+                             actionListener="#{listPessoaMb.cadastrar()}" 
+                             style="margin-right:20px;" 
+                             styleClass="ui-priority-primary" />
+        </h:body>
+    </h:form>
+</html>

@@ -1,0 +1,12 @@
+com\cadastrodepessoas\controller\ControleDeAcesso.class
+com\cadastrodepessoas\util\FacesUtil.class
+com\cadastrodepessoas\controller\PessoaFactory.class
+com\cadastrodepessoas\controller\SegurancaConfig.class
+com\cadastrodepessoas\enums\NaturalidadeEnum.class
+com\cadastrodepessoas\util\SessionUtil.class
+com\cadastrodepessoas\enums\SexoEnum.class
+com\cadastrodepessoas\mb\LoginMb.class
+com\cadastrodepessoas\dto\PessoaDto.class
+com\cadastrodepessoas\mb\CreatePessoaMb.class
+com\cadastrodepessoas\mb\ListPessoaMb.class
+com\cadastrodepessoas\controller\PessoasBuilder.class

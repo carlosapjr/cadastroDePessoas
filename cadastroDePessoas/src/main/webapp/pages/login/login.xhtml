@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:form>
+        <h:head>
+            <title>Login</title>
+        </h:head>
+        <h:body>
+            <p:messages id="mensagens" />
+            
+            <h:outputText value ="Bem vindo!" />
+            <p:inputText value="#{loginMb.email}"/>
+            <p:inputText value="#{loginMb.senha}"/>
+            <p:commandButton value="Entrar"
+                             ajax="false"
+                             actionListener="#{loginMb.autentica()}" 
+                             style="margin-right:20px;" 
+                             styleClass="ui-priority-primary" />
+        </h:body>
+    </h:form>
+</html>
