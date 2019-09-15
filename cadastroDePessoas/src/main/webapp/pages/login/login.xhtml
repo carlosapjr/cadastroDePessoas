@@ -7,16 +7,20 @@
             <title>Login</title>
         </h:head>
         <h:body>
-            <p:messages id="mensagens" />
-            
-            <h:outputText value ="Bem vindo!" />
-            <p:inputText value="#{loginMb.email}"/>
-            <p:inputText value="#{loginMb.senha}"/>
-            <p:commandButton value="Entrar"
-                             ajax="false"
-                             actionListener="#{loginMb.autentica()}" 
-                             style="margin-right:20px;" 
-                             styleClass="ui-priority-primary" />
+            <div align="center">
+                <p:messages id="messages" autoUpdate="true" closable="true" showIcon="false"/>
+
+                <h:outputText value ="Bem vindo!" />
+                <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+                    <p:inputText type="text" placeholder="Usuário" value="#{loginMb.email}"/>
+                    <p:inputText type="password" placeholder="Senha" value="#{loginMb.senha}"/>
+                    <p:commandButton value="Login"
+                                     ajax="false"
+                                     actionListener="#{loginMb.autentica()}" 
+                                     style="text-align:center; margin-left: 80px; height: 22px; width: 80px; margin-bottom: 10px;font-size:12px;"
+                                     styleClass="ui-priority-primary" />
+                </h:panelGrid>
+            </div>
         </h:body>
     </h:form>
 </html>

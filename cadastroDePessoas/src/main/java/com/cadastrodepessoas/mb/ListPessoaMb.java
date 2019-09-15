@@ -21,16 +21,12 @@ public class ListPessoaMb implements Serializable {
 
     @PostConstruct
     public void init() {
-        System.out.println(" Bean LisPessoaMb executado! ");
+        System.out.println("Bean LisPessoaMb executado! ");
         pessoas = (List<PessoaDto>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("listaDePessoas");
     }
 
     public List<PessoaDto> getPessoas() {
         return pessoas;
-    }
-
-    public String getMessage() {
-        return "Hello LisPessoaMb JSF!";
     }
 
     public void redirecionaParaCadastro() {

@@ -23,7 +23,7 @@ public class LoginMb implements Serializable {
 
     @PostConstruct
     public void init() {
-        System.out.println(" Bean LoginMb executado! ");
+        System.out.println("Bean LoginMb executado! ");
     }
 
     public void autentica() {
@@ -58,10 +58,6 @@ public class LoginMb implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-
-    public String getMessage() {
-        return "Hello LoginMb JSF!";
     }
 
     public void redirecionaParaListagem() {

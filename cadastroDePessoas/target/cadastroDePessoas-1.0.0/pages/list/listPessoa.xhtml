@@ -8,53 +8,61 @@
             <script src="https://kit.fontawesome.com/a076d05399.js"></script>
         </h:head>
         <h:body>
-            <p:messages id="mensagens" />
+            <p:messages id="messages" autoUpdate="true" closable="true" showIcon="false"/>
+
+            <div align="center">
+                <h:outputText value ="Listagem de Pessoas" />
+            </div>
             
-            <h:outputText value ="#{listPessoaMb.message}" />
+            <br></br>
+            
+            <div align="center">
+                <p:dataTable var="pessoa"
+                             rows="20"
+                             value="#{listPessoaMb.pessoas}"
+                             style="font-size: 12px">
 
-            <p:dataTable var="pessoa"
-                         
-                         value="#{listPessoaMb.pessoas}">
-                
-                <p:column headerText="Nome">
-                    <h:outputText value="#{pessoa.nome}" />
-                </p:column>
+                    <p:column headerText="Nome" style="font-size:12px;">
+                        <h:outputText value="#{pessoa.nome}" />
+                    </p:column>
 
-                <p:column headerText="CPF">
-                    <h:outputText value="#{pessoa.cpf}" />
-                </p:column>
+                    <p:column headerText="CPF" style="font-size:12px;">
+                        <h:outputText value="#{pessoa.cpf}" />
+                    </p:column>
 
-                <p:column headerText="Data de Nascimento">
-                    <h:outputText value="#{pessoa.dataDeNascimentoFromatada}" />
-                </p:column>
+                    <p:column headerText="Data de Nascimento" style="font-size:12px;">
+                        <h:outputText value="#{pessoa.dataDeNascimentoFromatada}" />
+                    </p:column>
 
-                <p:column headerText="Naturalidade">
-                    <h:outputText value="#{pessoa.naturalidade.label}" />
-                </p:column>
+                    <p:column headerText="Naturalidade" style="font-size:12px;">
+                        <h:outputText value="#{pessoa.naturalidade.label}" />
+                    </p:column>
 
-                <p:column headerText="E-mail">
-                    <h:outputText value="#{pessoa.email}" />
-                </p:column>
-                
-                <p:column style="width:32px">
-                    <p:commandButton ajax="false"
-                             icon="fa fa-trash-alt"
-                             actionListener="#{listPessoaMb.delete(pessoa)}" 
-                             style="margin-right:20px;" 
-                             styleClass="ui-priority-primary" />
-                    <p:commandButton ajax="false"
-                             icon="fa fa-fw fa-edit"
-                             actionListener="#{listPessoaMb.edit(pessoa)}" 
-                             style="margin-right:20px;" 
-                             styleClass="ui-priority-primary" />
-                </p:column>
-            </p:dataTable>
+                    <p:column headerText="E-mail" style="font-size:12px;">
+                        <h:outputText value="#{pessoa.email}" />
+                    </p:column>
 
-            <p:commandButton value="Cadastrar"
-                             ajax="false"
-                             actionListener="#{listPessoaMb.cadastrar()}" 
-                             style="margin-right:20px;" 
-                             styleClass="ui-priority-primary" />
+                    <p:column width="60" style="font-size:12px;">
+                        <p:commandButton ajax="false"
+                                         icon="fa fa-trash-alt"
+                                         actionListener="#{listPessoaMb.delete(pessoa)}"
+                                         styleClass="ui-priority-primary" />
+                        <p:commandButton ajax="false"
+                                         icon="fa fa-fw fa-edit"
+                                         actionListener="#{listPessoaMb.edit(pessoa)}"
+                                         styleClass="ui-priority-primary" />
+                    </p:column>
+                </p:dataTable>
+            </div>
+            
+            <br></br>
+            
+            <div align="center">
+                <p:commandButton value="Cadastrar"
+                                 ajax="false"
+                                 actionListener="#{listPessoaMb.cadastrar()}" 
+                                 style="height: 22px; width: 80px; margin-bottom: 10px;font-size:12px;"
+                                 styleClass="ui-priority-primary" /></div>
         </h:body>
     </h:form>
 </html>
