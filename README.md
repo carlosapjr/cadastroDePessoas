@@ -17,5 +17,5 @@ Password:123
 
 ## Version 1.0.0
 
-## Authors
+## Author
 **Carlos Alberto**
