@@ -15,12 +15,10 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 
 @ViewScoped
 @ManagedBean
@@ -88,6 +86,7 @@ public class CreatePessoaMb implements Serializable {
     }
 
     public void salvar() {
+        Boolean contemErro = false;
         pessoa.setDataDeNascimento(data.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDate());
@@ -98,12 +97,18 @@ public class CreatePessoaMb implements Serializable {
             if (!pessoas.isEmpty()) {
                 for (PessoaDto pessoaAtual : pessoas) {
                     if (pessoaAtual.equals(pessoa)) {
+                        FacesUtil.addErrorMessage("Pessoa já cadastrado!");
+                        contemErro = true;
+                    }
+                    if (pessoaAtual.getCpf().equals(pessoa.getCpf())) {
                         FacesUtil.addErrorMessage("CPF já cadastrado!");
+                        contemErro = true;
                     }
                 }
             }
-
-            pessoas.add(pessoa);
+            if (!contemErro) {
+                pessoas.add(pessoa);
+            }
         } else {
             for (int i = 0; i < pessoas.size(); i++) {
                 if (pessoas.get(i).equals(pessoa)) {
@@ -111,7 +116,11 @@ public class CreatePessoaMb implements Serializable {
                 }
             }
         }
-        redirecionaParaListagem();
+
+        if (!contemErro) {
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cadastrado", true);
+            redirecionaParaListagem();
+        }
     }
 
     public void redirecionaParaListagem() {

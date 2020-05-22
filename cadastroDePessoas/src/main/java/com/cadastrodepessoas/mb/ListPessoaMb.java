@@ -12,17 +12,29 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.persistence.PostLoad;
 
 @ViewScoped
 @ManagedBean
 public class ListPessoaMb implements Serializable {
 
     private List<PessoaDto> pessoas;
+    private Boolean cadastrado;
 
     @PostConstruct
     public void init() {
         System.out.println("Bean LisPessoaMb executado! ");
         pessoas = (List<PessoaDto>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("listaDePessoas");
+        cadastrado = (Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cadastrado");
+        cadastrado = cadastrado == null ? false : cadastrado;
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("cadastrado");
+    }
+
+    public void mostraMsgDeSucessoDeCadastro() {
+        if (cadastrado) {
+            FacesUtil.addInfoMessage("Cadastro/Edição realizado com sucesso!");
+            cadastrado = false;
+        }
     }
 
     public List<PessoaDto> getPessoas() {

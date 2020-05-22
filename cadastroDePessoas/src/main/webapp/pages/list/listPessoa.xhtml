@@ -6,20 +6,26 @@
         <h:head>
             <title>Listagem de Pessoas</title>
             <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+            <link rel="stylesheet" type="text/css" href="../../pages/resources/css/mensagens.css"> </link>
+            <script type="text/javascript" src="../../pages/resources/scripts/list/listPessoa.js"></script>
         </h:head>
-        <h:body>
-            <p:messages id="messages" autoUpdate="true" closable="true" showIcon="false"/>
+        <h:body style="background-color:#0f4c81ad;">
+
+            <div id="messages">
+                <p:messages id="messages" autoUpdate="true" closable="true" showIcon="false" class="messages"/>
+            </div>
 
             <div align="center">
-                <h:outputText value ="Listagem de Pessoas" />
+                <h:outputText value ="Listagem de Pessoas" style="font-size: 24px"/>
             </div>
-            
+
             <br></br>
-            
+
             <div align="center">
                 <p:dataTable var="pessoa"
                              rows="20"
                              value="#{listPessoaMb.pessoas}"
+                             emptyMessage="Nenhuma Pessoa cadastrada"
                              style="font-size: 12px">
 
                     <p:column headerText="Nome" style="font-size:12px;">
@@ -54,15 +60,22 @@
                     </p:column>
                 </p:dataTable>
             </div>
-            
+
             <br></br>
-            
+
             <div align="center">
                 <p:commandButton value="Cadastrar"
                                  ajax="false"
                                  actionListener="#{listPessoaMb.cadastrar()}" 
                                  style="height: 22px; width: 80px; margin-bottom: 10px;font-size:12px;"
-                                 styleClass="ui-priority-primary" /></div>
+                                 styleClass="ui-priority-primary" />
+            </div>
+
+            <p:remoteCommand
+                name="mostraMsgDeSucessoDeCadastro"
+                action="#{listPessoaMb.mostraMsgDeSucessoDeCadastro()}" >
+            </p:remoteCommand>
+            
         </h:body>
     </h:form>
 </html>

@@ -19,6 +19,7 @@ public class PessoaFactory {
                 .setDataDeNascimento(LocalDate.of(1999, Month.SEPTEMBER, 9))
                 .setNaturalidade(NaturalidadeEnum.SANTA_CATARINA)
                 .setNacionalidade("Brasileiro")
+                .setEmail("pedro@compania.com")
                 .build();
         
         PessoaDto pessoaExemplo2 = new PessoasBuilder()
@@ -28,6 +29,7 @@ public class PessoaFactory {
                 .setDataDeNascimento(LocalDate.of(1977, Month.JULY, 7))
                 .setNaturalidade(NaturalidadeEnum.SANTA_CATARINA)
                 .setNacionalidade("Brasileira")
+                .setEmail("maria@compania.com")
                 .build();
         
         pessoasExemplo.add(pessoaExemplo1);

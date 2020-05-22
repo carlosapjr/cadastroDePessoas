@@ -14,6 +14,7 @@ Password:123
 * Java - Programming language
 * PrimeFaces - The web framework used
 * Maven - Dependency Management
+* GlassFish - Server
 
 ## Version 1.0.0
 

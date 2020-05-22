@@ -4,85 +4,83 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <h:form id="form">
         <h:head>
-            <script type="text/javascript" src="../scripts/local-primefaces.js"></script>
+            <script type="text/javascript" src="../resources/scripts/local-primefaces.js"></script>
+            <link rel="stylesheet" type="text/css" href="../../pages/resources/css/mensagens.css"> </link>
             <title>Adicionar/Editar Pessoa</title>
         </h:head>
-        <h:body>
+        <h:body style="background-color:#0f4c81ad;">
 
-            <p:messages id="messages" autoUpdate="true" closable="true" showIcon="false"/>
+            <div id="messages">
+                <p:messages id="messages" autoUpdate="true" closable="true" showIcon="false" class="messages"/>
+            </div>
 
             <div align="center">
-                <h:outputText value ="Adicionar/Editar Pessoa" />
+                <h:outputText value ="Adicionar/Editar Pessoa" style="font-size: 24px"/>
             </div>
 
             <br></br>
 
             <div align="center">
                 <p:fieldset>
-                <h:panelGrid columns="4" cellpadding="5">
-                    <h:outputText value ="*Nome" 
-                                  style="font-size:12px;"/>
-                    <p:inputText value="#{createPessoaMb.pessoa.nome}"
-                                 required="true"
-                                 style="font-size:12px;"
-                                 requiredMessage="Campo Nome é obrigatório!"/>
+                    <h:panelGrid columns="4" cellpadding="5" >
+                        <h:outputText value ="*Nome" 
+                                      style="font-size:12px;"/>
+                        <p:inputText value="#{createPessoaMb.pessoa.nome}"
+                                     required="true"
+                                     style="font-size:12px;"
+                                     requiredMessage="Campo Nome é obrigatório!"/>
 
-                    <h:outputText value ="*CPF" 
-                                  style="font-size:12px;"/>
-                    <p:inputMask mask="999.999.999-99" id="cpf" size="15"
-                                 required="true"
-                                 style="font-size:12px;"
-                                 requiredMessage="Campo CPF é obrigatório!"
-                                 value="#{createPessoaMb.pessoa.cpf}" />
+                        <h:outputText value ="*CPF" 
+                                      style="font-size:12px;"/>
+                        <p:inputMask mask="999.999.999-99" id="cpf" size="15"
+                                     required="true"
+                                     style="font-size:12px;"
+                                     requiredMessage="Campo CPF é obrigatório!"
+                                     value="#{createPessoaMb.pessoa.cpf}" />
 
-                    <h:outputText value ="*Data de Nascimento" 
-                                  style="font-size:12px;"/>
-                    <p:calendar id="popup" value="#{createPessoaMb.data}"
-                                maxdate="#{createPessoaMb.today}"
-                                pattern="dd/MM/yyyy"
-                                mindate="01/01/1919"
-                                style="font-size:12px;"
-                                inputStyleClass="width: 10px;"
-                                locale="pt"
-                                required="true"
-                                requiredMessage="Campo Data de Nascimento è obrigatório!"/>
+                        <h:outputText value ="*Data de Nascimento" 
+                                      style="font-size:12px;"/>
+                        <p:calendar id="popup" value="#{createPessoaMb.data}"
+                                    maxdate="#{createPessoaMb.today}"
+                                    pattern="dd/MM/yyyy"
+                                    mindate="01/01/1919"
+                                    style="font-size:12px;"
+                                    inputStyleClass="width: 10px;"
+                                    locale="pt"
+                                    required="true"
+                                    requiredMessage="Campo Data de Nascimento é obrigatório!"/>
 
-                    <h:outputText value ="Naturalidade" 
-                                  style="font-size:12px;"/>
-                    <p:selectOneMenu value="#{createPessoaMb.pessoa.naturalidade}"
-                                     style="font-size:12px;">
-                        <f:selectItems value="#{createPessoaMb.naturalidade}" var="naturalidade"
-                                       itemLabel="#{naturalidade.label}" itemValue="#{naturalidade}" />
-                    </p:selectOneMenu>
+                        <h:outputText value ="*Naturalidade" 
+                                      style="font-size:12px;"/>
+                        <p:selectOneMenu value="#{createPessoaMb.pessoa.naturalidade}"
+                                         style="font-size:12px;">
+                            <f:selectItems value="#{createPessoaMb.naturalidade}" var="naturalidade"
+                                           itemLabel="#{naturalidade.label}" itemValue="#{naturalidade}" />
+                        </p:selectOneMenu>
 
-                    <h:outputText value ="Nacionalidade"
-                                  style="font-size:12px;"/>
-                    <p:inputText value="#{createPessoaMb.pessoa.nacionalidade}"
-                                 style="font-size:12px;"/>
+                        <h:outputText value ="*Sexo"
+                                      style="font-size:12px;"/>
+                        <p:selectOneMenu value="#{createPessoaMb.pessoa.sexo}"
+                                         style="font-size:12px;">
+                            <f:selectItems value="#{createPessoaMb.sexo}" var="sexo"
+                                           itemLabel="#{sexo.label}" itemValue="#{sexo}" />
+                        </p:selectOneMenu>
 
-                    <h:outputText value ="Sexo"
-                                  style="font-size:12px;"/>
-                    <p:selectOneMenu value="#{createPessoaMb.pessoa.sexo}"
-                                     style="font-size:12px;">
-                        <f:selectItems value="#{createPessoaMb.sexo}" var="sexo"
-                                       itemLabel="#{sexo.label}" itemValue="#{sexo}" />
-                    </p:selectOneMenu>
+                        <h:outputText value ="*E-mail"
+                                      style="font-size:12px;"/>
+                        <p:inputText value="#{createPessoaMb.pessoa.email}"
+                                     style="font-size:12px;"
+                                     validatorMessage="O e-mail informado é inválido!">
+                            <f:validateRegex
+                                pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        </p:inputText>
 
-                    <h:outputText value ="E-mail"
-                                  style="font-size:12px;"/>
-                    <p:inputText value="#{createPessoaMb.pessoa.email}"
-                                 style="font-size:12px;"
-                                 validatorMessage="O e-mail informado é inválido!">
-                        <f:validateRegex
-                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-                    </p:inputText>
-
-                </h:panelGrid>
-                    </p:fieldset>
+                    </h:panelGrid>
+                </p:fieldset>
             </div>
 
             <br></br>
-            
+
             <div align="center">
                 <p:commandButton value="Cancelar"
                                  ajax="false"
@@ -96,7 +94,7 @@
                                  style="height: 22px; width: 80px; margin-bottom: 10px;font-size:12px;"
                                  styleClass="ui-priority-primary" />
             </div>
-            
+
         </h:body>
     </h:form>
 </html>
